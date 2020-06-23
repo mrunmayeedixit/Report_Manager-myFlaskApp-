@@ -1,0 +1,14 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+  <br>
+  <div class="jumbotron text-center">
+    <h1>Welcome to FlaskApp</h1>
+    <p class="lead">Here you can easily create your daily reports and store them. Access your reports any time you want. Track your daily work in reports. Easily accessable daily-reports manager. </p>
+    <br>
+    {% if session.logged_in == NULL%}
+      <a href="/register" style="margin-right:15px" class="btn btn-primary btn-lg">Register</a>
+      <a href="/login" style="margin-left:15px" class="btn btn-success btn-lg">Login</a>
+    {% endif %}
+  </div>
+{% endblock %}

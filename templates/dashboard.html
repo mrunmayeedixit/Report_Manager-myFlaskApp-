@@ -1,0 +1,34 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+  <h1>Dashboard <small> Welcome {{session.username}}</small></h1>
+  <a class="btn btn-success" href="/add_report"> Add Report</a>
+  <hr>
+  <table class="table table-stripped">
+    <tr>
+      <th>Date</th>
+      <th>Title</th>
+      <th>Author</th>
+      <th></th>
+      <th></th>
+    </tr>
+
+    {% for report in reports %}
+    {% if report.author == session.username %}
+      <tr>
+        <td>{{report.create_date}}</td>
+        <td>{{report.title}}</td>
+        <td>{{report.author}}</td>
+        <td><a href="edit_report/{{report.id}}" class="btn btn-default pull-right">Edit</a></td>
+        <td>
+          <form class="" action="{{url_for('delete_report', id=report.id)}}" method="post">
+              <input type="hidden" name="_method" value="DELETE">
+              <input type="submit" value="Delete" class="btn btn-danger">
+          </form>
+        </td>
+      </tr>
+      {% endif %}
+     {% endfor %}
+  </table>
+
+{% endblock %}
